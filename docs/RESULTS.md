@@ -1,4 +1,4 @@
-# Final Results (stage5_full_v6)
+# Final Results (stage5_full)
 
 The table below is generated from the released per-image test scores.  The
 `results.json` files are the verbatim run records; the numbers here are
@@ -38,7 +38,7 @@ rounded to four decimals.
 
 ## Independent audit
 
-`results/summary/audit_report.json` was produced by `summarize_v6.py` and
+`results/summary/audit_report.json` was produced by `summarize.py` and
 checks, among other things:
 
 * no train/validation index overlap;
@@ -55,11 +55,11 @@ the same information in table form.
 
 ## Reproduction command
 
-The final run is identified by `results/stage5_full_v6/*/protocol.json`:
+The final run is identified by `results/stage5_full/*/protocol.json`:
 
 ```text
-masks  = .../stage2_pairs_v6
-output = .../stage5_full_v6
+masks  = .../stage2_pairs
+output = .../stage5_full
 epochs = 100
 batch  = 16
 lr     = 1e-4
@@ -67,6 +67,6 @@ seed   = 42
 evaluate = true
 ```
 
-`results/stage2_pairs_v6/*/protocol.json` records the generation provenance,
+`results/stage2_pairs/*/protocol.json` records the generation provenance,
 and `pairs_1000.json` records every selected pair, prompt group, seed,
 reference and mask path.

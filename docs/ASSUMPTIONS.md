@@ -19,9 +19,9 @@ enclosed in angle brackets.
 | Screw bag | bag (`<sb-bag>`; bag), screws (`<sb-screw>`; screw), nuts (`<sb-nut>`; nut), washers (`<sb-washer>`; washer) | a `<sb-bag>` containing `<sb-screw>` and `<sb-nut>` and `<sb-washer>` |
 | Splicing connectors | connectors (`<sc-conn>`; connector), cable (`<sc-cable>`; wire), clamps (`<sc-clamp>`; terminal) | two `<sc-conn>` linked by a `<sc-cable>` with `<sc-clamp>` |
 
-The implementation config is `v6_vendor/config.py`; the breakfast-box
+The implementation config is `vendor/config.py`; the breakfast-box
 initialisation words were explicitly set to box/fruit/cereal/topping in
-`train_mcl_v6.py` to match the paper's example.  The six CLIP-style templates
+`train_mcl.py` to match the paper's example.  The six CLIP-style templates
 are listed in the same vendor module.
 
 ## Stage I: MCL

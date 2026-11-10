@@ -21,20 +21,20 @@ authors' code and it does not report the paper's pixel-level AU-sPRO.
 * [`docs/PROVENANCE.md`](docs/PROVENANCE.md) lists run-time vs released source
   hashes and the redistributed/omitted assets.
 * Code map:
-  * `train_mcl_v6.py` — Stage I, 6,100 epochs, batch 16, LR 10⁻⁵;
-  * `generate_pairs_v6.py` — Stage II+III (2,000-candidate pool is our choice;
+  * `train_mcl.py` — Stage I, 6,100 epochs, batch 16, LR 10⁻⁵;
+  * `generate_pairs.py` — Stage II+III (2,000-candidate pool is our choice;
     the paper fixes 1,000 retained images);
-  * `train_eval_csda_v6.py` — Stage IV (100 epochs is our choice);
-  * `v6_vendor/` — SD-1.5, prompt, attention and SSIM utilities.
+  * `train_eval_csda.py` — Stage IV (100 epochs is our choice);
+  * `vendor/` — SD-1.5, prompt, attention and SSIM utilities.
 
 ## Result evidence
 
-* `results/stage5_full_v6/<category>/result.json` — image, logical and
+* `results/stage5_full/<category>/result.json` — image, logical and
   structural AUROC, best epoch, test count.
-* `results/stage5_full_v6/<category>/test_scores.csv` — per-image scores.
-* `results/stage5_full_v6/<category>/protocol.json` — args, assumptions,
+* `results/stage5_full/<category>/test_scores.csv` — per-image scores.
+* `results/stage5_full/<category>/protocol.json` — args, assumptions,
   run-time source/model/manifest hashes, `test_used_for_selection=false`.
-* `results/stage5_full_v6/<category>/split.json` and `history.json` — exact
+* `results/stage5_full/<category>/split.json` and `history.json` — exact
   train/validation split and 100-epoch trajectory.
 * `results/summary/audit_report.json` — independent check of AUROC, split
   overlap, self-reference exclusion and pair-manifest hash.
@@ -44,7 +44,7 @@ Run:
 
 ```bash
 python tools/verify_results.py          # recompute the released table
-python summarize_v6.py                  # heavier split/provenance audit
+python summarize.py                  # heavier split/provenance audit
 ```
 
 `verify_results.py` uses only the Python standard library and also checks the

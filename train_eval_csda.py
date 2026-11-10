@@ -13,7 +13,7 @@ import torch
 from torch import nn
 from torch.nn import functional as F
 from torchvision import models, transforms
-ROOT = Path(__file__).resolve().parent
+ROOT = Path(_file_).resolve().parent
 CATEGORIES = ['breakfast_box', 'juice_bottle', 'pushpins', 'screw_bag', 'splicing_connectors']
 PAPER = dict(zip(CATEGORIES, [87.2, 99.1, 92.9, 79.8, 95.2]))
 DATA = os.environ.get('MVTEC_LOCO_ROOT', str(ROOT / 'data' / 'mvtec_loco'))
@@ -42,8 +42,8 @@ def roc_auc_score(labels, scores):
 
 class Encoder(nn.Module):
 
-    def __init__(self, weights):
-        super().__init__()
+    def _init_(self, weights):
+        super()._init_()
         net = models.resnet18(weights=None)
         net.load_state_dict(torch.load(weights, map_location='cpu', weights_only=True), strict=True)
         self.stem = nn.Sequential(net.conv1, net.bn1, net.relu, net.maxpool)
@@ -95,13 +95,13 @@ def nearest_indices(features, memory, excluded=None, batch=16):
 
 class SepConv(nn.Sequential):
 
-    def __init__(self, ci, co, stride=1):
-        super().__init__(nn.Conv2d(ci, ci, 3, stride, 1, groups=ci, bias=False), nn.BatchNorm2d(ci), nn.ReLU(inplace=True), nn.Conv2d(ci, co, 1, bias=False), nn.BatchNorm2d(co), nn.ReLU(inplace=True))
+    def _init_(self, ci, co, stride=1):
+        super()._init_(nn.Conv2d(ci, ci, 3, stride, 1, groups=ci, bias=False), nn.BatchNorm2d(ci), nn.ReLU(inplace=True), nn.Conv2d(ci, co, 1, bias=False), nn.BatchNorm2d(co), nn.ReLU(inplace=True))
 
 class CSDA(nn.Module):
 
-    def __init__(self):
-        super().__init__()
+    def _init_(self):
+        super()._init_()
         self.project = nn.ModuleList([SepConv(128, 64), SepConv(256, 128), SepConv(512, 256)])
         (self.down12, self.down23) = (SepConv(64, 128, 2), SepConv(128, 256, 2))
         self.mid = SepConv(256, 256)
@@ -184,7 +184,7 @@ def main(a):
         if 'test' in path.parts:
             raise ValueError('Test data in training/validation inputs')
     assumptions = dict(base_diffusion='SD1.5 (generation provenance in pairs manifest)', optimizer='Adam', lr=a.lr, detector_epochs=a.epochs, batch=a.batch_size, image_score='max sigmoid anomaly map', resize='bilinear 256x256 for every path', normal_training='all train/good, own reference excluded', validation='10% synthetic, grouped by source reference, plus official validation/good', focal='gamma 2, alpha unweighted, continuous soft target', csda='Eq.11 raw channel-mean differences; gated C before projection', decoder='UNet widths 64,128,256; depthwise down; bilinear+1x1 up', reference='one whole normal image, minimum sum of full-map L2 norms')
-    manifest = dict(args=vars(a), assumptions=assumptions, pair_manifest_sha256=digest(pair_path), source_sha256=digest(__file__), resnet_sha256=digest(a.resnet18), test_used_for_selection=False, paper_target=PAPER[a.category], train_normals=[str(p) for p in train_normals], val_normals=[str(p) for p in val_normals])
+    manifest = dict(args=vars(a), assumptions=assumptions, pair_manifest_sha256=digest(pair_path), source_sha256=digest(_file_), resnet_sha256=digest(a.resnet18), test_used_for_selection=False, paper_target=PAPER[a.category], train_normals=[str(p) for p in train_normals], val_normals=[str(p) for p in val_normals])
     (out / 'protocol.json').write_text(json.dumps(manifest, indent=2))
     encoder = Encoder(a.resnet18).cuda()
     memory = extract(encoder, train_normals)
@@ -257,13 +257,13 @@ def main(a):
             writer.writerows(((str(p), typ, label, score) for ((p, label, typ), score) in zip(items, scores)))
     (out / 'result.json').write_text(json.dumps(result, indent=2))
     print(json.dumps(result), flush=True)
-if __name__ == '__main__':
+if _name_ == '_main_':
     parser = argparse.ArgumentParser()
     parser.add_argument('--category', choices=CATEGORIES, required=True)
     parser.add_argument('--data_root', default=DATA)
     parser.add_argument('--resnet18', default=WEIGHTS)
-    parser.add_argument('--masks', default=str(ROOT / 'stage2_pairs_v6'))
-    parser.add_argument('--output', default=str(ROOT / 'stage5_full_v6'))
+    parser.add_argument('--masks', default=str(ROOT / 'stage2_pairs'))
+    parser.add_argument('--output', default=str(ROOT / 'stage5_full'))
     parser.add_argument('--epochs', type=int, default=100)
     parser.add_argument('--batch_size', type=int, default=16)
     parser.add_argument('--lr', type=float, default=0.0001)

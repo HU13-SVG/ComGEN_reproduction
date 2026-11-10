@@ -16,15 +16,15 @@ from torchvision import transforms as T
 from torchvision.transforms.functional import to_pil_image
 from PIL import Image
 from diffusers import DDIMScheduler
-ROOT = Path(__file__).resolve().parent
-sys.path.insert(0, str(ROOT / 'v6_vendor'))
+ROOT = Path(_file_).resolve().parent
+sys.path.insert(0, str(ROOT / 'vendor'))
 from config import get_category_config
 from utils import load_sd_components, add_placeholder_tokens, compose_prompt, wrap_with_template
 
 class NounEmbeddings(nn.Module):
 
-    def __init__(self, base, ids):
-        super().__init__()
+    def _init_(self, base, ids):
+        super()._init_()
         self.base = base.requires_grad_(False)
         self.register_buffer('ids', torch.tensor(ids, device=base.weight.device))
         self.vectors = nn.Parameter(base.weight[ids].detach().clone())
@@ -37,14 +37,14 @@ class NounEmbeddings(nn.Module):
 
 class NormalSubset(Dataset):
 
-    def __init__(self, paths):
+    def _init_(self, paths):
         self.paths = paths
         self.augment = T.Compose([T.Resize((544, 544)), T.Pad(32, padding_mode='reflect'), T.RandomRotation(5, interpolation=T.InterpolationMode.BILINEAR), T.CenterCrop(544), T.RandomCrop(512), T.ToTensor(), T.Normalize([0.5] * 3, [0.5] * 3)])
 
-    def __len__(self):
+    def _len_(self):
         return len(self.paths)
 
-    def __getitem__(self, index):
+    def _getitem_(self, index):
         with Image.open(self.paths[index]) as im:
             return self.augment(im.convert('RGB'))
 
@@ -91,7 +91,7 @@ def main(a):
     generator = torch.Generator().manual_seed(a.seed)
     loader = DataLoader(dataset, batch_size=16, shuffle=True, drop_last=True, num_workers=0, pin_memory=True, generator=generator)
     full = compose_prompt(cfg)
-    manifest = dict(category=a.category, seed=a.seed, all_train_count=len(all_paths), selected_count=len(selected), selected_files=[str(p) for p in selected], epochs=a.epochs, batch_size=16, lr=1e-05, steps_per_epoch=len(loader), resolution=512, base_prompt=full, components=components, optimizer='Adam, no weight decay', precision='fp32 text/VAE, bf16 frozen UNet', trainable_parameters=len(components) * 768, source_sha256=hashlib.sha256(Path(__file__).read_bytes()).hexdigest(), augmentation='resize 544 square; reflect pad 32; rotate +/-5 degrees; center crop 544; random crop 512', assumptions=['SD1.5 base', 'noun initialization words', 'augmentation magnitudes', 'six CLIP-style templates', 'floor full batches per epoch; drop_last=True'], test_used=False)
+    manifest = dict(category=a.category, seed=a.seed, all_train_count=len(all_paths), selected_count=len(selected), selected_files=[str(p) for p in selected], epochs=a.epochs, batch_size=16, lr=1e-05, steps_per_epoch=len(loader), resolution=512, base_prompt=full, components=components, optimizer='Adam, no weight decay', precision='fp32 text/VAE, bf16 frozen UNet', trainable_parameters=len(components) * 768, source_sha256=hashlib.sha256(Path(_file_).read_bytes()).hexdigest(), augmentation='resize 544 square; reflect pad 32; rotate +/-5 degrees; center crop 544; random crop 512', assumptions=['SD1.5 base', 'noun initialization words', 'augmentation magnitudes', 'six CLIP-style templates', 'floor full batches per epoch; drop_last=True'], test_used=False)
     (out / 'training_manifest.json').write_text(json.dumps(manifest, indent=2))
     (epoch0, steps) = (0, 0)
     if a.resume and (out / 'resume.pt').exists():
@@ -140,10 +140,10 @@ def main(a):
             torch.save(state, out / 'resume.tmp.pt')
             (out / 'resume.tmp.pt').replace(out / 'resume.pt')
     torch.save(dict(embeddings={c['token']: v.detach().cpu().clone() for (c, v) in zip(components, embedding.vectors)}, components=components), out / 'embeddings_final.pt')
-if __name__ == '__main__':
+if _name_ == '_main_':
     p = argparse.ArgumentParser()
     p.add_argument('--category', required=True)
-    p.add_argument('--output', default=str(ROOT / 'stage1_embeddings_v6'))
+    p.add_argument('--output', default=str(ROOT / 'stage1_embeddings'))
     p.add_argument('--data_root', default=os.environ.get('MVTEC_LOCO_ROOT', str(ROOT / 'data' / 'mvtec_loco')))
     p.add_argument('--model', default=os.environ.get('SD15_PATH', str(ROOT / 'models' / 'stable-diffusion-v1-5')))
     p.add_argument('--epochs', type=int, default=6100)

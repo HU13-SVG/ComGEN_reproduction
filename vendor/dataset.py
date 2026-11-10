@@ -21,7 +21,7 @@ def list_normal_images(root: str, category: str, split: str='train') -> List[str
 
 class MVTecLOCONormal(Dataset):
 
-    def __init__(self, root: str, category: str, resolution: int=512, fraction: float=1.0, augment: bool=True, seed: int=0):
+    def _init_(self, root: str, category: str, resolution: int=512, fraction: float=1.0, augment: bool=True, seed: int=0):
         self.files = list_normal_images(root, category, split='train')
         if 0 < fraction < 1.0:
             rng = random.Random(seed)
@@ -33,10 +33,10 @@ class MVTecLOCONormal(Dataset):
         else:
             self.transform = T.Compose([T.Resize(resolution), T.CenterCrop(resolution), T.ToTensor(), T.Normalize([0.5], [0.5])])
 
-    def __len__(self):
+    def _len_(self):
         return len(self.files)
 
-    def __getitem__(self, idx):
+    def _getitem_(self, idx):
         img = Image.open(self.files[idx]).convert('RGB')
         return {'pixel_values': self.transform(img)}
 

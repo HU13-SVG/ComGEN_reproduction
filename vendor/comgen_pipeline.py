@@ -14,7 +14,7 @@ from utils import load_sd_components, load_learned_embeddings, compose_prompt, e
 
 class _AttnStore:
 
-    def __init__(self, res=16):
+    def _init_(self, res=16):
         self.res = res
         self.capturing = False
         self.sum = None
@@ -34,10 +34,10 @@ class _AttnStore:
 
 class _CaptureProcessor:
 
-    def __init__(self, store):
+    def _init_(self, store):
         self.store = store
 
-    def __call__(self, attn, hidden_states, encoder_hidden_states=None, attention_mask=None, temb=None, **kwargs):
+    def _call_(self, attn, hidden_states, encoder_hidden_states=None, attention_mask=None, temb=None, **kwargs):
         residual = hidden_states
         if getattr(attn, 'spatial_norm', None) is not None:
             hidden_states = attn.spatial_norm(hidden_states, temb)
@@ -80,7 +80,7 @@ def _gaussian3(x):
 
 class ComGENPipeline:
 
-    def __init__(self, model_id, embeddings_path, device='cuda', num_inference_steps=50, guidance_scale=7.5, resolution=512):
+    def _init_(self, model_id, embeddings_path, device='cuda', num_inference_steps=50, guidance_scale=7.5, resolution=512):
         from diffusers import DDIMScheduler
         dtype = torch.float16 if device.startswith('cuda') else torch.float32
         (self.device, self.dtype, self.res) = (device, dtype, resolution)

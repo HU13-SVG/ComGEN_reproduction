@@ -1,15 +1,15 @@
-> 说明：这是内部 v6 复现协议的中文原始记录（historical, for provenance only）。
+> 说明：这是内部  复现协议的中文原始记录（historical, for provenance only）。
 > 英文 `docs/PROTOCOL.md`、`docs/ASSUMPTIONS.md`、`docs/METRICS.md`、最终
-> `stage5_full_v6` 结果及 `results/summary/` 审计为准；文中部分历史变体描述
+> `stage5_full` 结果及 `results/summary/` 审计为准；文中部分历史变体描述
 > 仅作过程记录。**请勿用本文件核对论文设置或结果；以英文文档为准。**
 >
 > This is the original internal protocol, kept for provenance only.  The
 > English `PROTOCOL.md`, `ASSUMPTIONS.md`, `METRICS.md`, the released
-> `stage5_full_v6` results and `results/summary/` audit are authoritative.
+> `stage5_full` results and `results/summary/` audit are authoritative.
 > Some passages describe historical variants; do not cite them as paper
 > settings.
 
-# ComGEN v6 复现实验协议
+# ComGEN  复现实验协议
 
 本协议依据 ComGEN 论文（ICRA 2025），将论文明确要求与补充实现假设分开记录。目标是复现伪异常生成、掩码生成和检测完整流程，并客观比较 Table II 的结果；不承诺达到 91.2%。实际运行参数、数据清单、检查点及机器可读 manifest 是具体实验的依据。
 
@@ -17,7 +17,7 @@
 
 论文摘要和 Table II Mean 报告 91.2%。每类将真实测试集的 logical_anomalies 和 structural_anomalies 一并视为异常，与 good 比较。Table II 列出的五类 AUROC 为 breakfast_box 87.2%、juice_bottle 99.1%、pushpins 92.9%、screw_bag 79.8%、splicing_connectors 95.2%；这五个已四舍五入的数字算术平均为 **90.84%**，与表中 Mean 91.2% 不一致。按测试图数量加权也约为 90.81%，无法从该表还原 91.2%。因此复现报告需并列给出逐类 AUROC、实际五类算术平均、论文报告值 91.2% 和差距；不应称 91.2% 为这些逐类数值的算术平均，也不应为匹配 91.2% 而改变评估方法。仅生成图像、完成数量审计或得到单类结果，均不代表复现此指标。
 
-历史 v4/v5 产物、旧嵌入上的新检测器实验、短轮数 smoke test 只作为基线或运行验证。它们不能替代完成本协议 MCL、生成和检测的最终 v6 结果。最终报告须注明生成检查点训练轮数、每类实际样本数、检测器选择规则及五类宏平均；未完成的类别不能填入论文数值计算平均。
+历史 v4/v5 产物、旧嵌入上的新检测器实验、短轮数 smoke test 只作为基线或运行验证。它们不能替代完成本协议 MCL、生成和检测的最终  结果。最终报告须注明生成检查点训练轮数、每类实际样本数、检测器选择规则及五类宏平均；未完成的类别不能填入论文数值计算平均。
 
 ## 论文明确设置
 
@@ -69,6 +69,6 @@ Textual Inversion 作者发布的 [Stable Diffusion 配置](https://github.com/r
 
 ## 追溯与缓存建议
 
-每次运行保存参数、随机种子、训练文件清单、类别提示词、嵌入检查点 hash、训练 updates、软件版本、scheduler 配置、基础模型与 ResNet 权重标识/hash。源码追溯应覆盖三个顶层 v6 脚本及实际导入的 vendor 配置、utils、attention processor、SSIM 实现；仅 hash 顶层文件不足以发现依赖变化。
+每次运行保存参数、随机种子、训练文件清单、类别提示词、嵌入检查点 hash、训练 updates、软件版本、scheduler 配置、基础模型与 ResNet 权重标识/hash。源码追溯应覆盖三个顶层  脚本及实际导入的 vendor 配置、utils、attention processor、SSIM 实现；仅 hash 顶层文件不足以发现依赖变化。
 
 建议使用完整协议 hash 作为缓存身份的一部分。模型、嵌入、组件配置、mask 规则或 scheduler 改变后，应使用新输出目录或经明确验证重建受影响缓存，避免把旧 candidates、normal_cache 和新 mask 混在一个结果中。此段为待落实的追溯建议，不声称所有建议已由代码自动强制执行。

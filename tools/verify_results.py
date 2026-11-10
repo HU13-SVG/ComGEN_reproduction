@@ -3,7 +3,7 @@ import csv
 import json
 import math
 from pathlib import Path
-ROOT = Path(__file__).resolve().parents[1]
+ROOT = Path(_file_).resolve().parents[1]
 CATEGORIES = ('breakfast_box', 'juice_bottle', 'pushpins', 'screw_bag', 'splicing_connectors')
 EXPECTED = {'breakfast_box': 76.9976, 'juice_bottle': 87.8787, 'pushpins': 57.7646, 'screw_bag': 65.2481, 'splicing_connectors': 59.1109}
 EXPECTED_MACRO = 69.4
@@ -34,7 +34,7 @@ def main():
     ok = True
     values = []
     for cat in CATEGORIES:
-        folder = ROOT / 'results' / 'stage5_full_v6' / cat
+        folder = ROOT / 'results' / 'stage5_full' / cat
         result = json.loads((folder / 'result.json').read_text())
         rows = read_rows(folder / 'test_scores.csv')
         score = auc(rows)
@@ -51,7 +51,7 @@ def main():
             stored_sub = result[kind + '_auroc']
             if abs(sub_score - stored_sub) > 1e-08:
                 ok = False
-    total = sum((len(read_rows(ROOT / 'results' / 'stage5_full_v6' / cat / 'test_scores.csv')) for cat in CATEGORIES))
+    total = sum((len(read_rows(ROOT / 'results' / 'stage5_full' / cat / 'test_scores.csv')) for cat in CATEGORIES))
     macro = sum(values) / len(values)
     same = round(macro, 4) == EXPECTED_MACRO
     ok = ok and same
@@ -59,5 +59,5 @@ def main():
     print()
     print('Result:', 'PASS' if ok else 'FAIL')
     return 0 if ok else 1
-if __name__ == '__main__':
+if _name_ == '_main_':
     raise SystemExit(main())

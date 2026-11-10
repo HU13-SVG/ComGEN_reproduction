@@ -1,6 +1,6 @@
-# ComGEN v6 Reproduction Protocol
+# ComGEN  Reproduction Protocol
 
-This document records the protocol used for the released `stage5_full_v6`
+This document records the protocol used for the released `stage5_full`
 results.  It separates settings that the paper makes explicit from choices
 that the paper leaves unspecified.
 
@@ -24,18 +24,18 @@ specify" below.
 
 | Module | Paper requirement | Implementation |
 |---|---|---|
-| MCL | Learn multiple components jointly; one 768-parameter learnable embedding per noun component; only those noun embeddings are trainable; text encoder and diffusion network frozen (Sec. III-B, Eq. 4) | `train_mcl_v6.py`: `NounEmbeddings`; all base text/UNet/VAE parameters frozen |
-| Prompts | Adjectives, conjunctions and prepositions organise the components; CLIP-derived templates add diversity (Sec. III-B) | `v6_vendor/config.py`, `v6_vendor/utils.py` |
-| Training data and duration | One-third of the normal images per category; 6,100 epochs; constant LR 10⁻⁵; batch 16 (Sec. IV-A) | `train_mcl_v6.py`: `--epochs 6100`, `lr=1e-5`, batch 16 |
+| MCL | Learn multiple components jointly; one 768-parameter learnable embedding per noun component; only those noun embeddings are trainable; text encoder and diffusion network frozen (Sec. III-B, Eq. 4) | `train_mcl.py`: `NounEmbeddings`; all base text/UNet/VAE parameters frozen |
+| Prompts | Adjectives, conjunctions and prepositions organise the components; CLIP-derived templates add diversity (Sec. III-B) | `vendor/config.py`, `vendor/utils.py` |
+| Training data and duration | One-third of the normal images per category; 6,100 epochs; constant LR 10⁻⁵; batch 16 (Sec. IV-A) | `train_mcl.py`: `--epochs 6100`, `lr=1e-5`, batch 16 |
 | Augmentation | Random crop and rotation (Sec. IV-A) | implemented; exact magnitudes are our choice (below) |
-| PM | Delete the related token(s) to simulate a missing semantic component (Sec. III-B, Fig. 2-I) | `generate_pairs_v6.py`: unmodified prompt + one deletion per component |
-| Generation | DDIM with T = 50; 1,000 images per category (Sec. IV-A) | `generate_pairs_v6.py`: DDIM 50 steps; 1,000 retained (candidate pool is below) |
+| PM | Delete the related token(s) to simulate a missing semantic component (Sec. III-B, Fig. 2-I) | `generate_pairs.py`: unmodified prompt + one deletion per component |
+| Generation | DDIM with T = 50; 1,000 images per category (Sec. IV-A) | `generate_pairs.py`: DDIM 50 steps; 1,000 retained (candidate pool is below) |
 | RNA | Normal reference library; multi-scale features; find the closest normal reference (Sec. III-C, Eq. 5) | frozen ResNet-18 blocks 1–3; one whole normal image per pair |
-| Features | ResNet-18 blocks 1/2/3; 64×64×64, 128×32×32, 256×16×16 (Sec. IV-A) | `train_eval_csda_v6.py`: `Encoder` |
-| RM | Average all 16×16 cross-attention layers and heads; component maps at t = 0; 3×3 Gaussian smoothing (Sec. III-C, Eq. 7) | `generate_pairs_v6.py`: `BatchAttention`, `_gaussian3` |
+| Features | ResNet-18 blocks 1/2/3; 64×64×64, 128×32×32, 256×16×16 (Sec. IV-A) | `train_eval_csda.py`: `Encoder` |
+| RM | Average all 16×16 cross-attention layers and heads; component maps at t = 0; 3×3 Gaussian smoothing (Sec. III-C, Eq. 7) | `generate_pairs.py`: `BatchAttention`, `_gaussian3` |
 | Normal reconstruction | Deterministic DDIM forward encoding and reverse reconstruction (Sec. III-C, Eqs. 8–9) | `Pipeline.reconstruct`; step count/guidance are below |
 | Residual mask | Sum of absolute component-attention differences, then upsample (Sec. III-C, Eq. 10) | `residual = (A_norm - A_gen).abs().sum(1)`, bilinear to 512² |
-| CSDA | Channel-mean difference maps multiplied across scales (Eq. 11); U-Net exchanges scale information; depthwise-separable downsampling; bilinear + 1×1 upsampling (Sec. III-D) | `train_eval_csda_v6.py`: `CSDA` |
+| CSDA | Channel-mean difference maps multiplied across scales (Eq. 11); U-Net exchanges scale information; depthwise-separable downsampling; bilinear + 1×1 upsampling (Sec. III-D) | `train_eval_csda.py`: `CSDA` |
 | Detection loss | Smooth L1 + 5 × Focal + Dice (Eq. 12; λ = 5 in Sec. IV-A) | `objective`: `smooth_l1 + 5*focal + dice` |
 
 ### 6,100 epochs vs 6,100 steps
@@ -99,10 +99,10 @@ These are implementation assumptions, not published values:
 
 ## Vendor utility vs released driver
 
-`v6_vendor/comgen_pipeline.py` is a shared utility and contains alternative
+`vendor/comgen_pipeline.py` is a shared utility and contains alternative
 paths (for example a clean-latent normal reconstruction shortcut and
 drop/duplicate prompt enumeration).  The released Stage-II/III driver
-`generate_pairs_v6.py` overrides the reconstruction with the true DDIM
+`generate_pairs.py` overrides the reconstruction with the true DDIM
 inverse (Eqs. 8–9) and enumerates **one deletion per component** only.  The
 unused alternatives in the vendor code are not part of the released run.  The
 vendor and driver files are cleaned copies of the run-time sources; the
@@ -117,7 +117,7 @@ for the executed protocol.
   the mask pipeline, the validation split or the checkpoint-selection code.
 * The detector's validation split uses synthetic samples plus the official
   `validation/good`; the test set is evaluated once after training.
-* `summarize_v6.py` independently checks train/validation/test path overlap,
+* `summarize.py` independently checks train/validation/test path overlap,
   source-group overlap, self-reference exclusion and the pair-manifest hash.
   The released audit reports no overlap and a matching hash.
 
@@ -149,7 +149,7 @@ spacing over the selected pairs), not selected by visual quality.
 * the prompt list, seeds, candidate counts and assumptions;
 * the pair-manifest hash used by the detector.
 
-The raw hash cache is included under `results/provenance/v6_hash_cache/`.
+The raw hash cache is included under `results/provenance/hash_cache/`.
 Paths inside the JSON manifests are the absolute paths from the execution
 machine; they are kept verbatim as run records.
 
@@ -158,11 +158,11 @@ the detector/generation sources.  The released files were cleaned after the
 run (comments/docstrings removed, portable paths, a local AUROC helper), so
 their hashes differ from the run-time values.  The recorded values are
 retained unaltered; [`PROVENANCE.md`](PROVENANCE.md) lists every pair.  The pair-manifest SHA-256 **does** match the released
-`pairs_1000.json` (checked by `summarize_v6.py`).
+`pairs_1000.json` (checked by `summarize.py`).
 
 ## Final run
 
-The released numbers come from `stage5_full_v6`, whose detector protocol
-points to `stage2_pairs_v6`.  Earlier detector variants (`stage5_csda`,
+The released numbers come from `stage5_full`, whose detector protocol
+points to `stage2_pairs`.  Earlier detector variants (`stage5_csda`,
 `stage5_csda_prompt_aware_v5`, `stage5_csda_faithful_v4`) and the
 `ComGEN_reproduction` directory are not used for the reported table.

@@ -11,18 +11,18 @@ import torch
 from torch.nn import functional as F
 from torchvision.transforms.functional import to_pil_image, to_tensor
 from diffusers import DDIMInverseScheduler
-ROOT = Path(__file__).resolve().parent
-sys.path.insert(0, str(ROOT / 'v6_vendor'))
+ROOT = Path(_file_).resolve().parent
+sys.path.insert(0, str(ROOT / 'vendor'))
 from config import get_category_config
 from utils import compose_prompt
 from comgen_pipeline import ComGENPipeline, _CaptureProcessor, _gaussian3
 from low_density_filter import channelwise_ssim
-from train_eval_csda_v6 import Encoder, extract, nearest_indices, WEIGHTS, DATA
-from v6_provenance import capture_sources, package_versions, base_model_manifest, file_sha256
+from train_eval_csda import Encoder, extract, nearest_indices, WEIGHTS, DATA
+from provenance import capture_sources, package_versions, base_model_manifest, file_sha256
 
 class BatchAttention:
 
-    def __init__(self):
+    def _init_(self):
         self.res = 16
         self.capturing = True
         self.sum = None
@@ -96,7 +96,7 @@ def main(a):
     cfg = get_category_config(a.category)
     full = compose_prompt(cfg)
     specs = [('unmodified', full)] + [('remove_' + c['name'], full.replace(c['token'], '').strip()) for c in cfg['components']]
-    provenance_paths = [Path(__file__), ROOT / 'train_mcl_v6.py', ROOT / 'train_eval_csda_v6.py', ROOT / 'v6_provenance.py'] + sorted((ROOT / 'v6_vendor').glob('*.py'))
+    provenance_paths = [Path(_file_), ROOT / 'train_mcl.py', ROOT / 'train_eval_csda.py', ROOT / 'provenance.py'] + sorted((ROOT / 'vendor').glob('*.py'))
     provenance = dict(source_sha256=capture_sources(provenance_paths), package_versions=package_versions(), base_model=base_model_manifest(a.model), resnet_sha256=file_sha256(a.resnet18), ddim_scheduler_config=json.loads((Path(a.model) / 'scheduler/scheduler_config.json').read_text()))
     protocol = dict(category=a.category, seed=a.seed, embeddings=str(Path(a.embeddings).resolve()), embeddings_sha256=hashlib.sha256(Path(a.embeddings).read_bytes()).hexdigest(), provenance=provenance, published=dict(ddim_steps=50, attention_resolution=16, gaussian_kernel=3, reference_scales=['64x64x64', '128x32x32', '256x16x16'], keep=a.keep), assumptions=dict(cfg=a.guidance, candidates=a.candidates, base_model='SD1.5', ls='sum(1-SSIM); smallest distances within fixed per-prompt quotas', d_max='per-prompt order statistic to keep exactly 1000; numeric threshold unpublished', prompt_policy='unmodified plus one deletion of every noun; surrounding words retained', inversion='DDIMInverseScheduler, guidance 1, 50 steps; reverse guidance 1', attention='common full prompt, no added noise, t=0 after reconstruction/generation', soft_targets='per-image min/max Eq.10 residual; raw float residual also preserved', ssim='7x7 Gaussian, sigma 1.5, per-channel reference range'), paper_ambiguities=['Eq.6 calls sum SSIM a distance although SSIM is a similarity', 'whether A0 is queried again with the full prompt is not specified', 'mapping raw attention residuals to segmentation target range is not specified'], prompts=specs, test_used=False)
     protocol_path = out / 'protocol.json'
@@ -195,11 +195,11 @@ def main(a):
                 sheet.paste(im.convert('RGB').resize((256, 256)), (x * 256, y * 280 + 24))
     sheet.save(out / 'pairs_preview.jpg')
     print(f'{a.category}: completed {len(completed)} paired images', flush=True)
-if __name__ == '__main__':
+if _name_ == '_main_':
     p = argparse.ArgumentParser()
     p.add_argument('--category', required=True)
     p.add_argument('--embeddings', required=True)
-    p.add_argument('--output', default=str(ROOT / 'stage2_pairs_v6'))
+    p.add_argument('--output', default=str(ROOT / 'stage2_pairs'))
     p.add_argument('--model', default=os.environ.get('SD15_PATH', str(ROOT / 'models' / 'stable-diffusion-v1-5')))
     p.add_argument('--data_root', default=DATA)
     p.add_argument('--resnet18', default=WEIGHTS)

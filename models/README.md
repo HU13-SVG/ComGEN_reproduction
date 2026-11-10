@@ -23,7 +23,7 @@ The code loads `tokenizer`, `text_encoder`, `vae`, `unet` and `scheduler` with
 `local_files_only=True`.  Set `SD15_PATH` to another path if needed.
 
 The exact SD-1.5 component hashes used for the released generation are
-recorded in `results/stage2_pairs_v6/*/protocol.json` under
+recorded in `results/stage2_pairs/*/protocol.json` under
 `provenance.base_model.files`.
 
 ## ResNet-18 ImageNet weights
@@ -42,7 +42,7 @@ Place the file at `models/resnet18_imagenet1k_v1.pth`, or set
 `RESNET18_WEIGHTS` / pass `--resnet18`.
 
 The SHA-256 used in the released protocol is recorded in
-`results/stage5_full_v6/*/protocol.json` under `resnet_sha256`.  It is the hash
+`results/stage5_full/*/protocol.json` under `resnet_sha256`.  It is the hash
 of the run-time serialized state-dict file.  Re-saving the same torchvision
 weights with a different PyTorch version can change the serialized bytes
 while the tensors are identical; compare tensors if the file hash differs.

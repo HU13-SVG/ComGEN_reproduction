@@ -9,7 +9,7 @@ import signal
 import subprocess
 import sys
 import time
-ROOT = Path(__file__).resolve().parent
+ROOT = Path(_file_).resolve().parent
 CATEGORIES = ['breakfast_box', 'juice_bottle', 'pushpins', 'screw_bag', 'splicing_connectors']
 STAGES = ['mcl', 'pairs', 'csda']
 
@@ -17,7 +17,7 @@ def timestamp():
     return dt.datetime.now(dt.timezone.utc).isoformat()
 
 def commands(category, python):
-    return [[python, '-u', str(ROOT / 'train_mcl_v6.py'), '--category', category, '--epochs', '6100', '--resume'], [python, '-u', str(ROOT / 'generate_pairs_v6.py'), '--category', category, '--embeddings', str(ROOT / 'stage1_embeddings_v6' / category / 'embeddings_final.pt')], [python, '-u', str(ROOT / 'train_eval_csda_v6.py'), '--category', category, '--masks', str(ROOT / 'stage2_pairs_v6'), '--output', str(ROOT / 'stage5_full_v6'), '--evaluate']]
+    return [[python, '-u', str(ROOT / 'train_mcl.py'), '--category', category, '--epochs', '6100', '--resume'], [python, '-u', str(ROOT / 'generate_pairs.py'), '--category', category, '--embeddings', str(ROOT / 'stage1_embeddings' / category / 'embeddings_final.pt')], [python, '-u', str(ROOT / 'train_eval_csda.py'), '--category', category, '--masks', str(ROOT / 'stage2_pairs'), '--output', str(ROOT / 'stage5_full'), '--evaluate']]
 
 def atomic_json(path, data):
     temporary = path.with_suffix('.json.tmp')
@@ -41,11 +41,11 @@ def gpu_occupancy():
     return occupied
 
 def main():
-    parser = argparse.ArgumentParser(description=__doc__)
+    parser = argparse.ArgumentParser(description=_doc_)
     parser.add_argument('--gpus', nargs='+', type=int, default=[0, 1, 2, 3])
     parser.add_argument('--categories', nargs='+', choices=CATEGORIES, default=CATEGORIES)
     parser.add_argument('--python', default=sys.executable)
-    parser.add_argument('--state-dir', type=Path, default=ROOT / 'logs_v6_full_pipeline')
+    parser.add_argument('--state-dir', type=Path, default=ROOT / 'logs_full_pipeline')
     parser.add_argument('--poll-seconds', type=float, default=15)
     parser.add_argument('--dry-run', action='store_true')
     parser.add_argument('--background', action='store_true')
@@ -63,18 +63,18 @@ def main():
     if args.background:
         argv = [v for v in sys.argv[1:] if v != '--background']
         with (args.state_dir / 'scheduler.log').open('a') as log:
-            child = subprocess.Popen([sys.executable, '-u', str(Path(__file__).resolve()), *argv], cwd=ROOT, stdin=subprocess.DEVNULL, stdout=log, stderr=log, start_new_session=True)
+            child = subprocess.Popen([sys.executable, '-u', str(Path(_file_).resolve()), *argv], cwd=ROOT, stdin=subprocess.DEVNULL, stdout=log, stderr=log, start_new_session=True)
         time.sleep(1)
         if child.poll() is not None:
             print(f"Scheduler exited ({child.returncode}); inspect {args.state_dir / 'scheduler.log'}")
             return child.returncode or 0
         print(f'Background scheduler PID {child.pid}; logs: {args.state_dir}')
         return 0
-    lock = (ROOT / '.v6_full_pipeline.lock').open('a+')
+    lock = (ROOT / '._full_pipeline.lock').open('a+')
     try:
         fcntl.flock(lock.fileno(), fcntl.LOCK_EX | fcntl.LOCK_NB)
     except BlockingIOError:
-        print('Another v6 full pipeline scheduler or its surviving child holds the lock.', flush=True)
+        print('Another  full pipeline scheduler or its surviving child holds the lock.', flush=True)
         return 2
     state_path = args.state_dir / 'state.json'
     pid_path = args.state_dir / 'scheduler.pid'
@@ -166,5 +166,5 @@ def main():
         pid_path.unlink(missing_ok=True)
         lock.close()
     return 1 if any((state['categories'][c]['status'] == 'failed' for c in args.categories)) else 0
-if __name__ == '__main__':
+if _name_ == '_main_':
     raise SystemExit(main())

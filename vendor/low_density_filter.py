@@ -52,8 +52,8 @@ def load_local_resnet18(weights_path: str):
 
 class ResNet18MultiScale(nn.Module):
 
-    def __init__(self, device: str='cuda', weights_path: str=None):
-        super().__init__()
+    def _init_(self, device: str='cuda', weights_path: str=None):
+        super()._init_()
         if weights_path:
             net = load_local_resnet18(weights_path)
         else:
@@ -104,7 +104,7 @@ def channelwise_ssim(a: torch.Tensor, b: torch.Tensor, window_size: int=7, sigma
 
 class LowDensityFilter:
 
-    def __init__(self, reference_imgs: torch.Tensor, device: str='cuda', resnet_weights: str=None):
+    def _init_(self, reference_imgs: torch.Tensor, device: str='cuda', resnet_weights: str=None):
         self.device = device
         self.extractor = ResNet18MultiScale(device=device, weights_path=resnet_weights)
         with torch.no_grad():

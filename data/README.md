@@ -34,11 +34,11 @@ pairs.  The test split is evaluated once after training.
 
 ## Released manifests
 
-The `results/stage2_pairs_v6/*/pairs_1000.json` files contain the absolute
+The `results/stage2_pairs/*/pairs_1000.json` files contain the absolute
 paths from the execution machine (images, latents, masks, references).  They
 are run records, not portable paths.  The selected pairs, prompt groups,
 seeds, references, mask paths and reconstruction PSNRs are all recorded there.
-The `results/stage2_pairs_v6/*/pairs_preview.jpg` images are fixed-position
+The `results/stage2_pairs/*/pairs_preview.jpg` images are fixed-position
 normal / generated / mask montages.
 
 MVTec LOCO images are not redistributed and remain subject to the MVTec

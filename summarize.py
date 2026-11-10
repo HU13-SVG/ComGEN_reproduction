@@ -6,7 +6,7 @@ import json
 import math
 from datetime import datetime, timezone
 from pathlib import Path
-ROOT = Path(__file__).resolve().parent
+ROOT = Path(_file_).resolve().parent
 CATEGORIES = ['breakfast_box', 'juice_bottle', 'pushpins', 'screw_bag', 'splicing_connectors']
 PAPER = [87.2, 99.1, 92.9, 79.8, 95.2]
 
@@ -32,7 +32,7 @@ def audit(folder, rows):
     split = json.loads((folder / 'split.json').read_text())
     pair_file = Path(protocol['args']['masks']) / folder.name / 'pairs_1000.json'
     if not pair_file.exists():
-        pair_file = ROOT / 'results' / 'stage2_pairs_v6' / folder.name / 'pairs_1000.json'
+        pair_file = ROOT / 'results' / 'stage2_pairs' / folder.name / 'pairs_1000.json'
     pairs = json.loads(pair_file.read_text())
     (train, val) = (set(split['train_indices']), set(split['validation_indices']))
     ns = len(pairs)
@@ -46,8 +46,8 @@ def audit(folder, rows):
     return dict(split_index_overlap=sorted(train & val), synthetic_source_group_overlap=sorted(groups(train) & groups(val)), train_validation_test_path_overlap=sorted(used_paths & test_paths), training_validation_path_overlap=sorted(paths_for(train) & paths_for(val)), missing_test_paths=sorted(expected_test_paths - test_paths), extra_test_paths=sorted(test_paths - expected_test_paths), normal_self_reference_indices=own_refs, train_count=len(train), validation_count=len(val), synthetic_train_count=sum((i < ns for i in train)), synthetic_validation_count=sum((i < ns for i in val)), distinct_synthetic_image_paths=len({r['image'] for r in pairs}), pair_manifest_hash_matches=hashlib.sha256(pair_file.read_bytes()).hexdigest() == protocol['pair_manifest_sha256'], test_used_for_selection=protocol['test_used_for_selection'])
 
 def main():
-    parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('--root', type=Path, default=ROOT / 'results' / 'stage5_full_v6')
+    parser = argparse.ArgumentParser(description=_doc_)
+    parser.add_argument('--root', type=Path, default=ROOT / 'results' / 'stage5_full')
     args = parser.parse_args()
     report = dict(created_utc=datetime.now(timezone.utc).isoformat(), root=str(args.root.resolve()), method='independent Mann-Whitney average-rank AUROC; equal-weighted category macro average', categories=[], missing_categories=[])
     for (category, paper) in zip(CATEGORIES, PAPER):
@@ -85,5 +85,5 @@ def main():
         writer.writeheader()
         writer.writerows(report['categories'])
     print(json.dumps(dict(output=str(output), complete=report['complete'], missing=report['missing_categories'], five_category_mean_image_auroc=report['five_category_mean_image_auroc']), indent=2))
-if __name__ == '__main__':
+if _name_ == '_main_':
     main()

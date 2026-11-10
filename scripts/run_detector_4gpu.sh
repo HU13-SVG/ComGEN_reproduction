@@ -4,11 +4,11 @@ set -euo pipefail
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 PY="${PYTHON:-python}"
 cd "$ROOT"
-mkdir -p logs_v6_detector
+mkdir -p logs_detector
 
 run_one() {
-  CUDA_VISIBLE_DEVICES="$1" "$PY" -u train_eval_csda_v6.py \
-    --category "$2" --evaluate > "logs_v6_detector/$2.log" 2>&1
+  CUDA_VISIBLE_DEVICES="$1" "$PY" -u train_eval_csda.py \
+    --category "$2" --evaluate > "logs_detector/$2.log" 2>&1
 }
 
 (run_one 0 breakfast_box; run_one 0 splicing_connectors) & p0=$!

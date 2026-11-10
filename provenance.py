@@ -5,8 +5,8 @@ import json
 import os
 from pathlib import Path
 import tempfile
-ROOT = Path(__file__).resolve().parent
-DEFAULT_CACHE = ROOT / 'v6_hash_cache'
+ROOT = Path(_file_).resolve().parent
+DEFAULT_CACHE = ROOT / 'hash_cache'
 
 def _stat(path):
     s = path.stat()
