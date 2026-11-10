@@ -1,0 +1,13 @@
+{
+  "category": "screw_bag",
+  "best_epoch": 92,
+  "best_validation_loss": 1.1223883152008056,
+  "seconds": 251.1188268661499,
+  "test_evaluated": true,
+  "protocol": "/home/hello/program2/ComGEN_paper_reproduction/stage5_full_v6/screw_bag/protocol.json",
+  "image_auroc": 65.2481473164159,
+  "test_count": 341,
+  "paper_image_auroc": 79.8,
+  "logical_anomalies_auroc": 60.23094411870289,
+  "structural_anomalies_auroc": 73.63054778088764
+}

@@ -1,0 +1,337 @@
+{
+  "categories": {
+    "breakfast_box": {
+      "next_stage": 3,
+      "status": "completed",
+      "history": [
+        {
+          "stage": "mcl",
+          "gpu": 1,
+          "command": [
+            "/home/hello/miniconda3/envs/comgen/bin/python",
+            "-u",
+            "/home/hello/program2/ComGEN_paper_reproduction/train_mcl_v6.py",
+            "--category",
+            "breakfast_box",
+            "--epochs",
+            "6100",
+            "--resume"
+          ],
+          "started": "2026-10-03T14:19:20.501951+00:00",
+          "log": "/home/hello/program2/ComGEN_paper_reproduction/logs_v6_full_pipeline/breakfast_box.mcl.log",
+          "pid": 1989901,
+          "finished": "2026-10-05T03:05:06.671336+00:00",
+          "returncode": 0
+        },
+        {
+          "stage": "pairs",
+          "gpu": 1,
+          "command": [
+            "/home/hello/miniconda3/envs/comgen/bin/python",
+            "-u",
+            "/home/hello/program2/ComGEN_paper_reproduction/generate_pairs_v6.py",
+            "--category",
+            "breakfast_box",
+            "--embeddings",
+            "/home/hello/program2/ComGEN_paper_reproduction/stage1_embeddings_v6/breakfast_box/embeddings_final.pt"
+          ],
+          "started": "2026-10-05T03:05:06.826678+00:00",
+          "log": "/home/hello/program2/ComGEN_paper_reproduction/logs_v6_full_pipeline/breakfast_box.pairs.log",
+          "pid": 2476312,
+          "finished": "2026-10-05T04:10:55.720868+00:00",
+          "returncode": 0
+        },
+        {
+          "stage": "csda",
+          "gpu": 1,
+          "command": [
+            "/home/hello/miniconda3/envs/comgen/bin/python",
+            "-u",
+            "/home/hello/program2/ComGEN_paper_reproduction/train_eval_csda_v6.py",
+            "--category",
+            "breakfast_box",
+            "--masks",
+            "/home/hello/program2/ComGEN_paper_reproduction/stage2_pairs_v6",
+            "--output",
+            "/home/hello/program2/ComGEN_paper_reproduction/stage5_full_v6",
+            "--evaluate"
+          ],
+          "started": "2026-10-05T04:10:55.798470+00:00",
+          "log": "/home/hello/program2/ComGEN_paper_reproduction/logs_v6_full_pipeline/breakfast_box.csda.log",
+          "pid": 2488471,
+          "finished": "2026-10-05T04:17:11.158149+00:00",
+          "returncode": 0
+        }
+      ]
+    },
+    "juice_bottle": {
+      "next_stage": 3,
+      "status": "completed",
+      "history": [
+        {
+          "stage": "mcl",
+          "gpu": 2,
+          "command": [
+            "/home/hello/miniconda3/envs/comgen/bin/python",
+            "-u",
+            "/home/hello/program2/ComGEN_paper_reproduction/train_mcl_v6.py",
+            "--category",
+            "juice_bottle",
+            "--epochs",
+            "6100",
+            "--resume"
+          ],
+          "started": "2026-10-03T14:19:20.505698+00:00",
+          "log": "/home/hello/program2/ComGEN_paper_reproduction/logs_v6_full_pipeline/juice_bottle.mcl.log",
+          "pid": 1989902,
+          "finished": "2026-10-04T18:32:48.600532+00:00",
+          "returncode": 0
+        },
+        {
+          "stage": "pairs",
+          "gpu": 2,
+          "command": [
+            "/home/hello/miniconda3/envs/comgen/bin/python",
+            "-u",
+            "/home/hello/program2/ComGEN_paper_reproduction/generate_pairs_v6.py",
+            "--category",
+            "juice_bottle",
+            "--embeddings",
+            "/home/hello/program2/ComGEN_paper_reproduction/stage1_embeddings_v6/juice_bottle/embeddings_final.pt"
+          ],
+          "started": "2026-10-04T22:39:26.787975+00:00",
+          "log": "/home/hello/program2/ComGEN_paper_reproduction/logs_v6_full_pipeline/juice_bottle.pairs.log",
+          "pid": 2416430,
+          "finished": "2026-10-05T00:11:44.338276+00:00",
+          "returncode": 0
+        },
+        {
+          "stage": "csda",
+          "gpu": 3,
+          "command": [
+            "/home/hello/miniconda3/envs/comgen/bin/python",
+            "-u",
+            "/home/hello/program2/ComGEN_paper_reproduction/train_eval_csda_v6.py",
+            "--category",
+            "juice_bottle",
+            "--masks",
+            "/home/hello/program2/ComGEN_paper_reproduction/stage2_pairs_v6",
+            "--output",
+            "/home/hello/program2/ComGEN_paper_reproduction/stage5_full_v6",
+            "--evaluate"
+          ],
+          "started": "2026-10-05T02:05:15.292781+00:00",
+          "log": "/home/hello/program2/ComGEN_paper_reproduction/logs_v6_full_pipeline/juice_bottle.csda.log",
+          "pid": 2464970,
+          "finished": "2026-10-05T02:10:33.529827+00:00",
+          "returncode": 0
+        }
+      ]
+    },
+    "pushpins": {
+      "next_stage": 3,
+      "status": "completed",
+      "history": [
+        {
+          "stage": "mcl",
+          "gpu": 3,
+          "command": [
+            "/home/hello/miniconda3/envs/comgen/bin/python",
+            "-u",
+            "/home/hello/program2/ComGEN_paper_reproduction/train_mcl_v6.py",
+            "--category",
+            "pushpins",
+            "--epochs",
+            "6100",
+            "--resume"
+          ],
+          "started": "2026-10-03T14:19:20.508730+00:00",
+          "log": "/home/hello/program2/ComGEN_paper_reproduction/logs_v6_full_pipeline/pushpins.mcl.log",
+          "pid": 1989903,
+          "finished": "2026-10-04T22:14:55.736765+00:00",
+          "returncode": 0
+        },
+        {
+          "stage": "pairs",
+          "gpu": 3,
+          "command": [
+            "/home/hello/miniconda3/envs/comgen/bin/python",
+            "-u",
+            "/home/hello/program2/ComGEN_paper_reproduction/generate_pairs_v6.py",
+            "--category",
+            "pushpins",
+            "--embeddings",
+            "/home/hello/program2/ComGEN_paper_reproduction/stage1_embeddings_v6/pushpins/embeddings_final.pt"
+          ],
+          "started": "2026-10-04T22:39:26.791114+00:00",
+          "log": "/home/hello/program2/ComGEN_paper_reproduction/logs_v6_full_pipeline/pushpins.pairs.log",
+          "pid": 2416431,
+          "finished": "2026-10-05T00:12:45.068179+00:00",
+          "returncode": 0
+        },
+        {
+          "stage": "csda",
+          "gpu": 2,
+          "command": [
+            "/home/hello/miniconda3/envs/comgen/bin/python",
+            "-u",
+            "/home/hello/program2/ComGEN_paper_reproduction/train_eval_csda_v6.py",
+            "--category",
+            "pushpins",
+            "--masks",
+            "/home/hello/program2/ComGEN_paper_reproduction/stage2_pairs_v6",
+            "--output",
+            "/home/hello/program2/ComGEN_paper_reproduction/stage5_full_v6",
+            "--evaluate"
+          ],
+          "started": "2026-10-05T02:08:47.572779+00:00",
+          "log": "/home/hello/program2/ComGEN_paper_reproduction/logs_v6_full_pipeline/pushpins.csda.log",
+          "pid": 2465813,
+          "finished": "2026-10-05T02:14:33.831407+00:00",
+          "returncode": 0
+        }
+      ]
+    },
+    "screw_bag": {
+      "next_stage": 3,
+      "status": "completed",
+      "history": [
+        {
+          "stage": "mcl",
+          "gpu": 0,
+          "command": [
+            "/home/hello/miniconda3/envs/comgen/bin/python",
+            "-u",
+            "/home/hello/program2/ComGEN_paper_reproduction/train_mcl_v6.py",
+            "--category",
+            "screw_bag",
+            "--epochs",
+            "6100",
+            "--resume"
+          ],
+          "started": "2026-10-03T14:20:06.022694+00:00",
+          "log": "/home/hello/program2/ComGEN_paper_reproduction/logs_v6_full_pipeline/screw_bag.mcl.log",
+          "pid": 1990756,
+          "finished": "2026-10-04T22:31:36.465054+00:00",
+          "returncode": 0
+        },
+        {
+          "stage": "pairs",
+          "gpu": 3,
+          "command": [
+            "/home/hello/miniconda3/envs/comgen/bin/python",
+            "-u",
+            "/home/hello/program2/ComGEN_paper_reproduction/generate_pairs_v6.py",
+            "--category",
+            "screw_bag",
+            "--embeddings",
+            "/home/hello/program2/ComGEN_paper_reproduction/stage1_embeddings_v6/screw_bag/embeddings_final.pt"
+          ],
+          "started": "2026-10-05T02:10:33.637022+00:00",
+          "log": "/home/hello/program2/ComGEN_paper_reproduction/logs_v6_full_pipeline/screw_bag.pairs.log",
+          "pid": 2466342,
+          "finished": "2026-10-05T03:13:52.352089+00:00",
+          "returncode": 0
+        },
+        {
+          "stage": "csda",
+          "gpu": 2,
+          "command": [
+            "/home/hello/miniconda3/envs/comgen/bin/python",
+            "-u",
+            "/home/hello/program2/ComGEN_paper_reproduction/train_eval_csda_v6.py",
+            "--category",
+            "screw_bag",
+            "--masks",
+            "/home/hello/program2/ComGEN_paper_reproduction/stage2_pairs_v6",
+            "--output",
+            "/home/hello/program2/ComGEN_paper_reproduction/stage5_full_v6",
+            "--evaluate"
+          ],
+          "started": "2026-10-05T03:13:52.511487+00:00",
+          "log": "/home/hello/program2/ComGEN_paper_reproduction/logs_v6_full_pipeline/screw_bag.csda.log",
+          "pid": 2478012,
+          "finished": "2026-10-05T03:19:52.854760+00:00",
+          "returncode": 0
+        }
+      ]
+    },
+    "splicing_connectors": {
+      "next_stage": 3,
+      "status": "completed",
+      "history": [
+        {
+          "stage": "mcl",
+          "gpu": 0,
+          "command": [
+            "/home/hello/miniconda3/envs/comgen/bin/python",
+            "-u",
+            "/home/hello/program2/ComGEN_paper_reproduction/train_mcl_v6.py",
+            "--category",
+            "splicing_connectors",
+            "--epochs",
+            "6100",
+            "--resume"
+          ],
+          "started": "2026-10-04T22:39:26.783967+00:00",
+          "log": "/home/hello/program2/ComGEN_paper_reproduction/logs_v6_full_pipeline/splicing_connectors.mcl.log",
+          "pid": 2416429,
+          "finished": "2026-10-06T06:36:57.829832+00:00",
+          "returncode": 0
+        },
+        {
+          "stage": "pairs",
+          "gpu": 0,
+          "command": [
+            "/home/hello/miniconda3/envs/comgen/bin/python",
+            "-u",
+            "/home/hello/program2/ComGEN_paper_reproduction/generate_pairs_v6.py",
+            "--category",
+            "splicing_connectors",
+            "--embeddings",
+            "/home/hello/program2/ComGEN_paper_reproduction/stage1_embeddings_v6/splicing_connectors/embeddings_final.pt"
+          ],
+          "started": "2026-10-06T06:36:57.953462+00:00",
+          "log": "/home/hello/program2/ComGEN_paper_reproduction/logs_v6_full_pipeline/splicing_connectors.pairs.log",
+          "pid": 2821058,
+          "finished": "2026-10-06T07:43:16.761562+00:00",
+          "returncode": 0
+        },
+        {
+          "stage": "csda",
+          "gpu": 0,
+          "command": [
+            "/home/hello/miniconda3/envs/comgen/bin/python",
+            "-u",
+            "/home/hello/program2/ComGEN_paper_reproduction/train_eval_csda_v6.py",
+            "--category",
+            "splicing_connectors",
+            "--masks",
+            "/home/hello/program2/ComGEN_paper_reproduction/stage2_pairs_v6",
+            "--output",
+            "/home/hello/program2/ComGEN_paper_reproduction/stage5_full_v6",
+            "--evaluate"
+          ],
+          "started": "2026-10-06T07:43:16.847422+00:00",
+          "log": "/home/hello/program2/ComGEN_paper_reproduction/logs_v6_full_pipeline/splicing_connectors.csda.log",
+          "pid": 2833153,
+          "finished": "2026-10-06T07:48:17.139803+00:00",
+          "returncode": 0
+        }
+      ]
+    }
+  },
+  "scheduler": {
+    "pid": 1989897,
+    "started": "2026-10-03T14:19:20.351308+00:00",
+    "gpus": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "finished": "2026-10-06T07:48:17.142593+00:00",
+    "status": "finished"
+  },
+  "updated": "2026-10-06T07:48:17.142621+00:00"
+}

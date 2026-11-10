@@ -1,0 +1,13 @@
+{
+  "category": "juice_bottle",
+  "best_epoch": 89,
+  "best_validation_loss": 1.2196673556897768,
+  "seconds": 238.25079035758972,
+  "test_evaluated": true,
+  "protocol": "/home/hello/program2/ComGEN_paper_reproduction/stage5_full_v6/juice_bottle/protocol.json",
+  "image_auroc": 87.87865128020195,
+  "test_count": 330,
+  "paper_image_auroc": 99.1,
+  "logical_anomalies_auroc": 92.05873539106982,
+  "structural_anomalies_auroc": 81.56405613399728
+}

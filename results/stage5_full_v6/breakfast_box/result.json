@@ -1,0 +1,13 @@
+{
+  "category": "breakfast_box",
+  "best_epoch": 100,
+  "best_validation_loss": 1.1867950423558553,
+  "seconds": 243.33128094673157,
+  "test_evaluated": true,
+  "protocol": "/home/hello/program2/ComGEN_paper_reproduction/stage5_full_v6/breakfast_box/protocol.json",
+  "image_auroc": 76.99761985719145,
+  "test_count": 275,
+  "paper_image_auroc": 87.2,
+  "logical_anomalies_auroc": 84.27828962910465,
+  "structural_anomalies_auroc": 70.28322440087146
+}

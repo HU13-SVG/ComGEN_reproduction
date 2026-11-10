@@ -1,0 +1,5 @@
+export MVTEC_LOCO_ROOT=/path/to/mvtec_loco
+export SD15_PATH=/path/to/stable-diffusion-v1-5
+export RESNET18_WEIGHTS=/path/to/resnet18_imagenet1k_v1.pth
+export PYTHON=python
+export GPUS=0,1,2,3

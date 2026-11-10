@@ -1,0 +1,153 @@
+{
+  "created_utc": "2026-11-05T04:54:08.847072+00:00",
+  "root": "/home/hello/program2/release_build/ComGEN_reproduction/results/stage5_full_v6",
+  "method": "independent Mann-Whitney average-rank AUROC; equal-weighted category macro average",
+  "categories": [
+    {
+      "category": "breakfast_box",
+      "image_auroc": 76.99761985719144,
+      "paper_image_auroc": 87.2,
+      "gap_percentage_points": -10.202380142808565,
+      "test_count": 275,
+      "best_epoch": 100,
+      "logical_anomalies_auroc": 84.27828962910465,
+      "structural_anomalies_auroc": 70.28322440087146,
+      "audit": {
+        "split_index_overlap": [],
+        "synthetic_source_group_overlap": [],
+        "train_validation_test_path_overlap": [],
+        "training_validation_path_overlap": [],
+        "missing_test_paths": [],
+        "extra_test_paths": [],
+        "normal_self_reference_indices": [],
+        "train_count": 1263,
+        "validation_count": 150,
+        "synthetic_train_count": 912,
+        "synthetic_validation_count": 88,
+        "distinct_synthetic_image_paths": 1000,
+        "pair_manifest_hash_matches": true,
+        "test_used_for_selection": false
+      }
+    },
+    {
+      "category": "juice_bottle",
+      "image_auroc": 87.87865128020195,
+      "paper_image_auroc": 99.1,
+      "gap_percentage_points": -11.221348719798044,
+      "test_count": 330,
+      "best_epoch": 89,
+      "logical_anomalies_auroc": 92.05873539106982,
+      "structural_anomalies_auroc": 81.56405613399728,
+      "audit": {
+        "split_index_overlap": [],
+        "synthetic_source_group_overlap": [],
+        "train_validation_test_path_overlap": [],
+        "training_validation_path_overlap": [],
+        "missing_test_paths": [],
+        "extra_test_paths": [],
+        "normal_self_reference_indices": [],
+        "train_count": 1220,
+        "validation_count": 169,
+        "synthetic_train_count": 885,
+        "synthetic_validation_count": 115,
+        "distinct_synthetic_image_paths": 1000,
+        "pair_manifest_hash_matches": true,
+        "test_used_for_selection": false
+      }
+    },
+    {
+      "category": "pushpins",
+      "image_auroc": 57.76457701381867,
+      "paper_image_auroc": 92.9,
+      "gap_percentage_points": -35.13542298618133,
+      "test_count": 310,
+      "best_epoch": 10,
+      "logical_anomalies_auroc": 55.71747093486224,
+      "structural_anomalies_auroc": 60.06441223832528,
+      "audit": {
+        "split_index_overlap": [],
+        "synthetic_source_group_overlap": [],
+        "train_validation_test_path_overlap": [],
+        "training_validation_path_overlap": [],
+        "missing_test_paths": [],
+        "extra_test_paths": [],
+        "normal_self_reference_indices": [],
+        "train_count": 1249,
+        "validation_count": 192,
+        "synthetic_train_count": 877,
+        "synthetic_validation_count": 123,
+        "distinct_synthetic_image_paths": 1000,
+        "pair_manifest_hash_matches": true,
+        "test_used_for_selection": false
+      }
+    },
+    {
+      "category": "screw_bag",
+      "image_auroc": 65.2481473164159,
+      "paper_image_auroc": 79.8,
+      "gap_percentage_points": -14.551852683584102,
+      "test_count": 341,
+      "best_epoch": 92,
+      "logical_anomalies_auroc": 60.23094411870289,
+      "structural_anomalies_auroc": 73.63054778088764,
+      "audit": {
+        "split_index_overlap": [],
+        "synthetic_source_group_overlap": [],
+        "train_validation_test_path_overlap": [],
+        "training_validation_path_overlap": [],
+        "missing_test_paths": [],
+        "extra_test_paths": [],
+        "normal_self_reference_indices": [],
+        "train_count": 1330,
+        "validation_count": 90,
+        "synthetic_train_count": 970,
+        "synthetic_validation_count": 30,
+        "distinct_synthetic_image_paths": 1000,
+        "pair_manifest_hash_matches": true,
+        "test_used_for_selection": false
+      }
+    },
+    {
+      "category": "splicing_connectors",
+      "image_auroc": 59.11089824530848,
+      "paper_image_auroc": 95.2,
+      "gap_percentage_points": -36.08910175469152,
+      "test_count": 312,
+      "best_epoch": 83,
+      "logical_anomalies_auroc": 61.52349828820417,
+      "structural_anomalies_auroc": 56.04547701433515,
+      "audit": {
+        "split_index_overlap": [],
+        "synthetic_source_group_overlap": [],
+        "train_validation_test_path_overlap": [],
+        "training_validation_path_overlap": [],
+        "missing_test_paths": [],
+        "extra_test_paths": [],
+        "normal_self_reference_indices": [],
+        "train_count": 894,
+        "validation_count": 526,
+        "synthetic_train_count": 534,
+        "synthetic_validation_count": 466,
+        "distinct_synthetic_image_paths": 1000,
+        "pair_manifest_hash_matches": true,
+        "test_used_for_selection": false
+      }
+    }
+  ],
+  "missing_categories": [],
+  "complete": true,
+  "five_category_mean_image_auroc": 69.3999787425873,
+  "paper_target_mean": 91.2,
+  "paper_reported_mean_arithmetic_check": {
+    "rounded_category_values": [
+      87.2,
+      99.1,
+      92.9,
+      79.8,
+      95.2
+    ],
+    "arithmetic_mean": 90.84,
+    "paper_table_reported_mean": 91.2,
+    "note": "The rounded per-category values average to 90.84, not 91.2; this discrepancy is reported rather than adjusted."
+  }
+}

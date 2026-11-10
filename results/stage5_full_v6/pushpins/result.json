@@ -1,0 +1,13 @@
+{
+  "category": "pushpins",
+  "best_epoch": 10,
+  "best_validation_loss": 1.2456653912862141,
+  "seconds": 243.61093020439148,
+  "test_evaluated": true,
+  "protocol": "/home/hello/program2/ComGEN_paper_reproduction/stage5_full_v6/pushpins/protocol.json",
+  "image_auroc": 57.76457701381867,
+  "test_count": 310,
+  "paper_image_auroc": 92.9,
+  "logical_anomalies_auroc": 55.717470934862234,
+  "structural_anomalies_auroc": 60.06441223832528
+}

@@ -1,0 +1,74 @@
+{
+  "method": "independent Mann-Whitney average-rank AUROC; equal-weighted category macro average",
+  "categories": [
+    {
+      "category": "breakfast_box",
+      "reproduced_image_auroc": 76.9976,
+      "paper_image_auroc": 87.2,
+      "difference": -10.2024,
+      "logical_anomalies_auroc": 84.2783,
+      "structural_anomalies_auroc": 70.2832,
+      "test_count": 275,
+      "best_epoch": 100
+    },
+    {
+      "category": "juice_bottle",
+      "reproduced_image_auroc": 87.8787,
+      "paper_image_auroc": 99.1,
+      "difference": -11.2213,
+      "logical_anomalies_auroc": 92.0587,
+      "structural_anomalies_auroc": 81.5641,
+      "test_count": 330,
+      "best_epoch": 89
+    },
+    {
+      "category": "pushpins",
+      "reproduced_image_auroc": 57.7646,
+      "paper_image_auroc": 92.9,
+      "difference": -35.1354,
+      "logical_anomalies_auroc": 55.7175,
+      "structural_anomalies_auroc": 60.0644,
+      "test_count": 310,
+      "best_epoch": 10
+    },
+    {
+      "category": "screw_bag",
+      "reproduced_image_auroc": 65.2481,
+      "paper_image_auroc": 79.8,
+      "difference": -14.5519,
+      "logical_anomalies_auroc": 60.2309,
+      "structural_anomalies_auroc": 73.6305,
+      "test_count": 341,
+      "best_epoch": 92
+    },
+    {
+      "category": "splicing_connectors",
+      "reproduced_image_auroc": 59.1109,
+      "paper_image_auroc": 95.2,
+      "difference": -36.0891,
+      "logical_anomalies_auroc": 61.5235,
+      "structural_anomalies_auroc": 56.0455,
+      "test_count": 312,
+      "best_epoch": 83
+    }
+  ],
+  "macro_mean_image_auroc": 69.3999787425873,
+  "paper_reported_mean": 91.2,
+  "paper_arithmetic_mean_of_rounded_categories": 90.84,
+  "audit": {
+    "complete": true,
+    "missing_categories": [],
+    "paper_reported_mean_arithmetic_check": {
+      "rounded_category_values": [
+        87.2,
+        99.1,
+        92.9,
+        79.8,
+        95.2
+      ],
+      "arithmetic_mean": 90.84,
+      "paper_table_reported_mean": 91.2,
+      "note": "The rounded per-category values average to 90.84, not 91.2; this discrepancy is reported rather than adjusted."
+    }
+  }
+}

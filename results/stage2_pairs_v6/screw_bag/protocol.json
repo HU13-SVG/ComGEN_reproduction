@@ -1,0 +1,180 @@
+{
+  "category": "screw_bag",
+  "seed": 42,
+  "embeddings": "/home/hello/program2/ComGEN_paper_reproduction/stage1_embeddings_v6/screw_bag/embeddings_final.pt",
+  "embeddings_sha256": "6308166945105009e902239e31b0b835af2f3c70a2dddf0c40091bc39a31c83d",
+  "provenance": {
+    "source_sha256": {
+      "/home/hello/program2/ComGEN_paper_reproduction/generate_pairs_v6.py": "ce4c0281fd9d1002bfd3cf96fd7fafb07f00d3a05c0ad8c07be667048fbe9cbf",
+      "/home/hello/program2/ComGEN_paper_reproduction/train_mcl_v6.py": "90a177007097c03504f2d4275c4ba02dff1bf9bd845d657df8404519b0c7f9c7",
+      "/home/hello/program2/ComGEN_paper_reproduction/train_eval_csda_v6.py": "1d9745dfb17364c3093dd2f5b80ca0e14481e0d69903cdaa532587e9ae02bbe6",
+      "/home/hello/program2/ComGEN_paper_reproduction/v6_provenance.py": "680f47c3bd868771315dba8e000d2cc41962de097940304e784aaf1815991a63",
+      "/home/hello/program2/ComGEN_paper_reproduction/v6_vendor/comgen_pipeline.py": "e1e3e1bad998eec85cc77e4b1836ec0578362cc08afd2a976ea418ea699e8155",
+      "/home/hello/program2/ComGEN_paper_reproduction/v6_vendor/config.py": "e4f15050eaf63f04da6b76d09b384c804f726c3a1acc7d62b8608dd5bdb11473",
+      "/home/hello/program2/ComGEN_paper_reproduction/v6_vendor/dataset.py": "188177e12e57ff428467a7b86e683512bed3c9c2105f50d888bf0d03e9ee0f98",
+      "/home/hello/program2/ComGEN_paper_reproduction/v6_vendor/low_density_filter.py": "52b79b6e79c03d7b2cc6694e3f1039370159f6ee9a66388b4675c5b5dd4ae81d",
+      "/home/hello/program2/ComGEN_paper_reproduction/v6_vendor/utils.py": "3e49e02a0e8316c24bd8feea79905fafbc7e0c522d7f4e2936fc2b7fd0ed9875"
+    },
+    "package_versions": {
+      "torch": "2.4.1",
+      "torchvision": "0.19.1",
+      "diffusers": "0.36.0",
+      "transformers": "4.46.3",
+      "numpy": "1.24.4",
+      "PIL": "10.4.0",
+      "sklearn": "1.3.2"
+    },
+    "base_model": {
+      "model_path": "/media/hello/deskone/program_3/ComGEN_claude/models/runwayml--stable-diffusion-v1-5",
+      "algorithm": "sha256",
+      "components": {
+        "text_encoder": [
+          "text_encoder/pytorch_model.bin"
+        ],
+        "unet": [
+          "unet/diffusion_pytorch_model.safetensors"
+        ],
+        "vae": [
+          "vae/diffusion_pytorch_model.safetensors"
+        ]
+      },
+      "files": {
+        "feature_extractor/preprocessor_config.json": {
+          "size": 342,
+          "mtime_ns": 1780992471607872730,
+          "sha256": "2a1da83b5e1032aaeef397552ddb408dca0d8cd1dc58f61bf6abf38d6f33a0a2"
+        },
+        "model_index.json": {
+          "size": 541,
+          "mtime_ns": 1780993933206967537,
+          "sha256": "e2f6f22e274374010aec30c79eb2d6e53fff4a36ac0225523a92cb2d41a83347"
+        },
+        "safety_checker/config.json": {
+          "size": 4723,
+          "mtime_ns": 1780992472495982929,
+          "sha256": "5dd77a06cbd9b155060bd58deb81ffd1aafc1c6d7970acac674c1128bd4edfe2"
+        },
+        "scheduler/scheduler_config.json": {
+          "size": 308,
+          "mtime_ns": 1780992470651753952,
+          "sha256": "699cce92eb7c122e2eb7dfdea78e6187fda76a5ed4a8e42319b85610e620e091"
+        },
+        "text_encoder/config.json": {
+          "size": 617,
+          "mtime_ns": 1781002707779106771,
+          "sha256": "845df614cb9327ae7bbea027316246fae917827407da6df13572e41b5f93b4cc"
+        },
+        "text_encoder/pytorch_model.bin": {
+          "size": 492305335,
+          "mtime_ns": 1781002896020024471,
+          "sha256": "770a47a9ffdcfda0b05506a7888ed714d06131d60267e6cf52765d61cf59fd67"
+        },
+        "tokenizer/merges.txt": {
+          "size": 524619,
+          "mtime_ns": 1780992466435228380,
+          "sha256": "9fd691f7c8039210e0fced15865466c65820d09b63988b0174bfe25de299051a"
+        },
+        "tokenizer/special_tokens_map.json": {
+          "size": 472,
+          "mtime_ns": 1780992467335340818,
+          "sha256": "c4864a9376a8401918425bed71fc14fc0e81f9b59ec45c1cf96cccb2df508eac"
+        },
+        "tokenizer/tokenizer_config.json": {
+          "size": 806,
+          "mtime_ns": 1780992468247454622,
+          "sha256": "00439066fcba73de57644cf41e4e3b9f2dbb09d7f3fc2005898ba52399045882"
+        },
+        "tokenizer/vocab.json": {
+          "size": 1059962,
+          "mtime_ns": 1780992469719638016,
+          "sha256": "e089ad92ba36837a0d31433e555c8f45fe601ab5c221d4f607ded32d9f7a4349"
+        },
+        "unet/config.json": {
+          "size": 743,
+          "mtime_ns": 1781000948101858464,
+          "sha256": "78f474de6bab3d893868f37be97b636ae65c0df3073ed3256ca458ff599b5f96"
+        },
+        "unet/diffusion_pytorch_model.safetensors": {
+          "size": 3438167540,
+          "mtime_ns": 1781002707011086140,
+          "sha256": "19da7aaa4b880e59d56843f1fcb4dd9b599c28a1d9d9af7c1143057c8ffae9f1"
+        },
+        "vae/config.json": {
+          "size": 547,
+          "mtime_ns": 1780992327832019904,
+          "sha256": "786a7d21647ddea6a04b9675c03d3cb45e90a2f3c6da5fbda2c54ade040036de"
+        },
+        "vae/diffusion_pytorch_model.safetensors": {
+          "size": 334643276,
+          "mtime_ns": 1781000947197860063,
+          "sha256": "a2b5134f4dbc140d9c11f11cba3233099e00af40f262f136c691fb7d38d2194c"
+        }
+      }
+    },
+    "resnet_sha256": "17b1281672b0228639a4c20056573e15c1fce8c917d61ff9c97c38690c287518",
+    "ddim_scheduler_config": {
+      "_class_name": "PNDMScheduler",
+      "_diffusers_version": "0.6.0",
+      "beta_end": 0.012,
+      "beta_schedule": "scaled_linear",
+      "beta_start": 0.00085,
+      "num_train_timesteps": 1000,
+      "set_alpha_to_one": false,
+      "skip_prk_steps": true,
+      "steps_offset": 1,
+      "trained_betas": null,
+      "clip_sample": false
+    }
+  },
+  "published": {
+    "ddim_steps": 50,
+    "attention_resolution": 16,
+    "gaussian_kernel": 3,
+    "reference_scales": [
+      "64x64x64",
+      "128x32x32",
+      "256x16x16"
+    ],
+    "keep": 1000
+  },
+  "assumptions": {
+    "cfg": 7.5,
+    "candidates": 2000,
+    "base_model": "SD1.5",
+    "ls": "sum(1-SSIM); smallest distances within fixed per-prompt quotas",
+    "d_max": "per-prompt order statistic to keep exactly 1000; numeric threshold unpublished",
+    "prompt_policy": "unmodified plus one deletion of every noun; surrounding words retained",
+    "inversion": "DDIMInverseScheduler, guidance 1, 50 steps; reverse guidance 1",
+    "attention": "common full prompt, no added noise, t=0 after reconstruction/generation",
+    "soft_targets": "per-image min/max Eq.10 residual; raw float residual also preserved",
+    "ssim": "7x7 Gaussian, sigma 1.5, per-channel reference range"
+  },
+  "paper_ambiguities": [
+    "Eq.6 calls sum SSIM a distance although SSIM is a similarity",
+    "whether A0 is queried again with the full prompt is not specified",
+    "mapping raw attention residuals to segmentation target range is not specified"
+  ],
+  "prompts": [
+    [
+      "unmodified",
+      "a <sb-bag> containing <sb-screw> and <sb-nut> and <sb-washer>"
+    ],
+    [
+      "remove_bag",
+      "a  containing <sb-screw> and <sb-nut> and <sb-washer>"
+    ],
+    [
+      "remove_screws",
+      "a <sb-bag> containing  and <sb-nut> and <sb-washer>"
+    ],
+    [
+      "remove_nuts",
+      "a <sb-bag> containing <sb-screw> and  and <sb-washer>"
+    ],
+    [
+      "remove_washers",
+      "a <sb-bag> containing <sb-screw> and <sb-nut> and"
+    ]
+  ],
+  "test_used": false
+}

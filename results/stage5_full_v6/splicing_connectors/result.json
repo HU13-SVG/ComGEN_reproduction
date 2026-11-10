@@ -1,0 +1,13 @@
+{
+  "category": "splicing_connectors",
+  "best_epoch": 83,
+  "best_validation_loss": 1.3132986519273242,
+  "seconds": 196.97328281402588,
+  "test_evaluated": true,
+  "protocol": "/home/hello/program2/ComGEN_paper_reproduction/stage5_full_v6/splicing_connectors/protocol.json",
+  "image_auroc": 59.11089824530848,
+  "test_count": 312,
+  "paper_image_auroc": 95.2,
+  "logical_anomalies_auroc": 61.52349828820417,
+  "structural_anomalies_auroc": 56.045477014335155
+}

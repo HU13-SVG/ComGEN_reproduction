@@ -1,0 +1,7 @@
+category,reproduced_image_auroc,paper_image_auroc,difference,logical_anomalies_auroc,structural_anomalies_auroc,test_count,best_epoch
+breakfast_box,76.9976,87.2,-10.2024,84.2783,70.2832,275,100
+juice_bottle,87.8787,99.1,-11.2213,92.0587,81.5641,330,89
+pushpins,57.7646,92.9,-35.1354,55.7175,60.0644,310,10
+screw_bag,65.2481,79.8,-14.5519,60.2309,73.6305,341,92
+splicing_connectors,59.1109,95.2,-36.0891,61.5235,56.0455,312,83
+macro_mean,69.4,91.2,-21.8,,,1568,
